@@ -1,4 +1,18 @@
 FinalProject::Application.routes.draw do
+  resources :tags
+
+  resources :groups
+
+  resources :ops
+
+  resources :posts
+
+  resources :topics
+
+  resources :forums
+
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

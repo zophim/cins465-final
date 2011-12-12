@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @topic.title %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @topic.user_id %>
+</p>
+
+<p>
+  <b>Forum:</b>
+  <%= @topic.forum_id %>
+</p>
+
+<p>
+  <b>Vulgar:</b>
+  <%= @topic.vulgar %>
+</p>
+
+<p>
+  <b>Private:</b>
+  <%= @topic.private %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @topic.group_id %>
+</p>
+
+<p>
+  <b>Op:</b>
+  <%= @topic.op_id %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @topic.active %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%= @topic.tag_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<%= link_to 'Back', topics_path %>

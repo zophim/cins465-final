@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @op.user_id %>
+</p>
+
+<p>
+  <b>Forum:</b>
+  <%= @op.forum_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_op_path(@op) %> |
+<%= link_to 'Back', ops_path %>

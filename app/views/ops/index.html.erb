@@ -1,0 +1,25 @@
+<h1>Listing ops</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Forum</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ops.each do |op| %>
+  <tr>
+    <td><%= op.user_id %></td>
+    <td><%= op.forum_id %></td>
+    <td><%= link_to 'Show', op %></td>
+    <td><%= link_to 'Edit', edit_op_path(op) %></td>
+    <td><%= link_to 'Destroy', op, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Op', new_op_path %>

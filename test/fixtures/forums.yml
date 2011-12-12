@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  vulgar: 
+  user_id: 
+  private: 
+  group_id: 
+  op_id: 
+  active: 
+  tag_id: 
+
+two:
+  title: MyString
+  vulgar: 
+  user_id: 
+  private: 
+  group_id: 
+  op_id: 
+  active: 
+  tag_id: 
