@@ -16,18 +16,8 @@
 </p>
 
 <p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
   <b>Phone:</b>
   <%= @user.phone %>
-</p>
-
-<p>
-  <b>Group:</b>
-  <%= @user.group_id %>
 </p>
 
 <p>
@@ -36,18 +26,8 @@
 </p>
 
 <p>
-  <b>Op:</b>
-  <%= @user.op_id %>
-</p>
-
-<p>
   <b>Encrypted password:</b>
   <%= @user.encrypted_password %>
-</p>
-
-<p>
-  <b>DOB:</b>
-  <%= @user.DOB %>
 </p>
 
 <p>
@@ -65,6 +45,20 @@
   <%= @user.hide_vulgar %>
 </p>
 
+<p>
+  <b>Dob:</b>
+  <%= @user.DoB %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @user.group_id %>
+</p>
+
+<p>
+  <b>Op to:</b>
+  <%= Op.find_all_by_user_id(@user.id).forum.title %>
+</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

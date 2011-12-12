@@ -4,28 +4,24 @@ one:
   first_name: MyString
   last_name: MyString
   username: MyString
-  email_id: 
   phone: MyString
-  group_id: 
-  admin: 
-  op: 
+  admin: false
   encrypted_password: MyString
-  age: 
-  active: 
+  active: false
   salt: MyString
-  hide_vulgar: 
+  hide_vulgar: false
+  DoB: 2011-12-11
+  group_id: 1
 
 two:
   first_name: MyString
   last_name: MyString
   username: MyString
-  email_id: 
   phone: MyString
-  group_id: 
-  admin: 
-  op: 
+  admin: false
   encrypted_password: MyString
-  age: 
-  active: 
+  active: false
   salt: MyString
-  hide_vulgar: 
+  hide_vulgar: false
+  DoB: 2011-12-11
+  group_id: 1

@@ -9,7 +9,6 @@
     <th>Group</th>
     <th>Op</th>
     <th>Active</th>
-    <th>Tag</th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,9 +21,10 @@
     <td><%= forum.user_id %></td>
     <td><%= forum.private %></td>
     <td><%= forum.group_id %></td>
-    <td><%= forum.op_id %></td>
+    <td><% Op.find_all_by_forum_id(forum.id).each do |op| %>
+			 | <%= link_to "#{op.user.username}", op.user %> | 
+			<% end %></td>
     <td><%= forum.active %></td>
-    <td><%= forum.tag_id %></td>
     <td><%= link_to 'Show', forum %></td>
     <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
     <td><%= link_to 'Destroy', forum, confirm: 'Are you sure?', method: :delete %></td>

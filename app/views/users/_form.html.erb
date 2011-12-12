@@ -24,37 +24,25 @@
     <%= f.text_field :username %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
     <%= f.label :phone %><br />
     <%= f.text_field :phone %>
   </div>
   <div class="field">
-    <%= f.label :group_id %><br />
-    <%= f.text_field :group_id %>
-  </div>
-  <div class="field">
     <%= f.label :admin %><br />
-    <%= f.text_field :admin %>
-  </div>
-  <div class="field">
-    <%= f.label :op_id %><br />
-    <%= f.text_field :op_id %>
+    <%= f.check_box :admin %>
   </div>
   <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </div>
-	<div class="field">
-		<%= f.label :password_confirmation %>
-		<%= f.password_field :password_confirmation %>
-	</div>
   <div class="field">
-		<%= f.label :DOB %>
-		<%= f.date_select "post", :DOB %>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
   </div>
+	<div class="field">
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+	</div>
   <div class="field">
     <%= f.label :active %><br />
     <%= f.check_box :active %>
@@ -62,6 +50,14 @@
   <div class="field">
     <%= f.label :hide_vulgar %><br />
     <%= f.check_box :hide_vulgar %>
+  </div>
+  <div class="field">
+    <%= f.label :DoB %><br />
+    <%= f.date_select :DoB %>
+  </div>
+  <div class="field">
+    <%= f.label :group_id %><br />
+    <%= f.text_field :group_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

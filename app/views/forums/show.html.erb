@@ -12,7 +12,7 @@
 
 <p>
   <b>User:</b>
-  <%= @forum.user_id %>
+  <%= User.find(@forum.user_id).username %>
 </p>
 
 <p>
@@ -27,7 +27,9 @@
 
 <p>
   <b>Op:</b>
-  <%= @forum.op_id %>
+  <% Op.find_all_by_forum_id(@forum.id) do |op| %>
+		<%= link_to "#{op.user.username}", user %>
+	<% end %>
 </p>
 
 <p>
@@ -35,11 +37,9 @@
   <%= @forum.active %>
 </p>
 
-<p>
-  <b>Tag:</b>
-  <%= @forum.tag_id %>
-</p>
-
+<% Topic.find_all_by_forum_id(@forum.id) do |topic| %>
+| <%= link_to "#{topic.title}", topic %> | <br />
+<% end %>
 
 <%= link_to 'Edit', edit_forum_path(@forum) %> |
 <%= link_to 'Back', forums_path %>

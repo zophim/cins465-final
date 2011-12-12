@@ -5,14 +5,13 @@
     <th>First name</th>
     <th>Last name</th>
     <th>Username</th>
-    <th>Email</th>
     <th>Phone</th>
-    <th>Group</th>
     <th>Admin</th>
-    <th>Op</th>
-    <th>Age</th>
     <th>Active</th>
-    <th>Hide Vulgar</th>
+    <th>Hide vulgar</th>
+    <th>Dob</th>
+    <th>Group</th>
+		<th>Op to</th>
     <th></th>
     <th></th>
     <th></th>
@@ -23,14 +22,15 @@
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
     <td><%= user.username %></td>
-    <td><%= user.email %></td>
     <td><%= user.phone %></td>
-    <td><%= user.group_id %></td>
     <td><%= user.admin %></td>
-    <td><%= user.op_id %></td>
-    <td><%= user.DOB %></td>
     <td><%= user.active %></td>
     <td><%= user.hide_vulgar %></td>
+    <td><%= user.DoB %></td>
+    <td><%= user.group_id %></td>
+		<td>| <% Op.find_all_by_user_id(user.id).each do |op| %>
+			<%=  link_to "#{op.forum.title}", op.forum %> |
+			<% end %> </td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>

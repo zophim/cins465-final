@@ -1,17 +1,25 @@
 FinalProject::Application.routes.draw do
+  resources :users
+
   resources :tags
 
   resources :groups
 
   resources :ops
 
-  resources :posts
+  resources :sessions, :only => [:new, :create, :destroy]
 
-  resources :topics
+  resources :topics do
+    resources :posts
+  end
 
   resources :forums
-
-  resources :users
+  
+  match '/signup',  :to => 'user#new'
+  match '/signin',  :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
+  
+  root              :to => 'sessions#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

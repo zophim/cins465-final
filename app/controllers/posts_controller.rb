@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.find_all_by_topic_id(params[:topic_id])
+    @topic = Topic.find(params[:topic_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @topic = Topic.find(params[:topic_id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
+    @topic = Topic.find(params[:topic_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +44,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
+    @topic = Topic.find(params[:topic_id])
 
     respond_to do |format|
       if @post.save
@@ -57,6 +61,7 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
+    @topic = Topic.find(params[:topic_id])
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
