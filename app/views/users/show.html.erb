@@ -57,7 +57,9 @@
 
 <p>
   <b>Op to:</b>
-  <%= Op.find_all_by_user_id(@user.id).forum.title %>
+  <% Op.find_all_by_user_id(@user.id).each do |op| %>
+		| <%= link_to "#{op.forum.title}", forum_path(op.forum) %> | 
+	<% end %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

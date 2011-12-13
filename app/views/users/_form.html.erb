@@ -28,8 +28,8 @@
     <%= f.text_field :phone %>
   </div>
   <div class="field">
-    <%= f.label :admin %><br />
-    <%= f.check_box :admin %>
+    <%= f.label :admin_pass %><br />
+    <%= f.password_field :admin_pass %>
   </div>
   <div class="field">
     <%= f.label :password %><br />
@@ -53,7 +53,7 @@
   </div>
   <div class="field">
     <%= f.label :DoB %><br />
-    <%= f.date_select :DoB %>
+    <%= f.date_select :DoB, :start_year => 1925 %>
   </div>
   <div class="field">
     <%= f.label :group_id %><br />

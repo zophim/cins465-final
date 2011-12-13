@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  
   def index
     @users = User.all
 
@@ -35,16 +36,23 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    if @user != current_user
+      if @user.admin
+        flash.notice = "Can only edit if logged in as that user or an admin."
+        redirect_to users_path
+      end
+    end
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
+    @user.encrypting
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        sign_in @user
+        format.html { redirect_to user_path, notice: "User was successfully created." }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -73,11 +81,14 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-
+    if (@user == current_user) || @user.admin
+      @user.toggle!(:active)
+      flash.notice = "Hello"
+    end
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :ok }
     end
   end
+  
 end

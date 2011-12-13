@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
   serialize :group_id
   serialize :email
   
-  attr_accessor :password
-  attr_accessible :first_name, :last_name, :username, :phone, :password, :DoB, :admin, :active, :hide_vulgar, :email, :group_id
+  before_save :check_admin
   
-  before_save :encrypt_password
+  attr_accessor :password, :admin_pass
+  attr_accessible :first_name, :last_name, :username, :phone, :password, :DoB, :admin_pass, :active, :hide_vulgar, :email, :group_id
   
   validates :first_name, :presence => true,
                          :length   => {:maximum => 50}
@@ -32,32 +32,52 @@ class User < ActiveRecord::Base
   validates :email,      :format   => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
   
   def has_password?(submitted_password)
-    encrypted_password = encrypted_password(submitted_password)
+    encrypted_password == encrypt(submitted_password)
   end
   
   def self.authenticate(username, submitted_password)
-    user = find_by_username(username)
-    user ||= find_by_email(username)
+    if username == "/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i"
+      user = find_by_email(username)
+    else
+      user = find_by_username(username)
+    end
     return nil if user.nil?
     return user if user.has_password?(submitted_password)
   end
   
+  def self.authenticate_with_salt(id, cookie_salt)
+    user = find_by_id(id)
+    (user && user.salt == cookie_salt) ? user : nil
+  end
+  
+  def encrypting
+    encrypt_password
+  end
+  
   private
   
-      def encrypt_password
-        self.salt = make_salt unless has_password?(password)
-        self.encrypted_password = encrypt(password)
+    def check_admin
+      if admin_pass == "password"
+        self.admin = true
+      else
+        self.admin = false
       end
-  
-      def encrypt(string)
-        secure_hash("#{salt}--#{string}")
-      end
-  
-      def make_salt
-        secure_hash("#{Time.now.utc}--#{password}")
-      end
-  
-      def secure_hash(string)
-        Digest::SHA2.hexdigest(string)
-      end
+    end
+    
+    def encrypt_password
+      self.salt = make_salt unless has_password?(password)
+      self.encrypted_password = encrypt(password)
+    end
+    
+    def encrypt(string)
+      secure_hash("#{salt}--#{string}")
+    end
+    
+    def make_salt
+      secure_hash("#{Time.now.utc}--#{password}")
+    end
+    
+    def secure_hash(string)
+      Digest::SHA2.hexdigest(string)
+    end
 end

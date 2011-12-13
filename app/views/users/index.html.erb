@@ -1,10 +1,11 @@
 <h1>Listing users</h1>
-
+<p id="notice"></p>
 <table>
   <tr>
     <th>First name</th>
     <th>Last name</th>
     <th>Username</th>
+		<th>Email</th>
     <th>Phone</th>
     <th>Admin</th>
     <th>Active</th>
@@ -18,10 +19,12 @@
   </tr>
 
 <% @users.each do |user| %>
+	<% if user.active %>
   <tr>
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
     <td><%= user.username %></td>
+		<td><%= user.email %>
     <td><%= user.phone %></td>
     <td><%= user.admin %></td>
     <td><%= user.active %></td>
@@ -35,6 +38,7 @@
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
+	<% end %>
 <% end %>
 </table>
 

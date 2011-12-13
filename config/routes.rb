@@ -15,7 +15,9 @@ FinalProject::Application.routes.draw do
 
   resources :forums
   
-  match '/signup',  :to => 'user#new'
+  match '/users/:id/add_email', :to => 'users#add_email'
+  
+  match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   
